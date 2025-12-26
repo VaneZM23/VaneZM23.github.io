@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre Animado</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F7E7CE; /* Champagne */
+    font-family: sans-serif;
+  }
+
+  /* Contenedor del sobre */
+  .envelope {
+    width: 250px;
+    height: 150px;
+    position: relative;
+    cursor: pointer;
+    perspective: 1000px; /* Para la animación 3D */
+  }
+
+  /* Cuerpo del sobre */
+  .envelope-body {
+    width: 100%;
+    height: 100%;
+    background-color: #556B2F; /* Verde olivo */
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+  }
+
+  /* Solapa del sobre */
+  .flap {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 0;
+    left: 0;
+    background-color: #6B8E23; /* Verde más claro */
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transform-origin: top;
+    transition: transform 1s;
+  }
+
+  /* Mensaje dentro del sobre */
+  .message {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 1s;
+  }
+
+  /* Animación al abrir */
+  .envelope.open .flap {
+    transform: rotateX(180deg);
+  }
+  .envelope.open .message {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="envelope" id="envelope">
+  <div class="envelope-body">
+    <div class="flap"></div>
+    <div class="message">
+      <a href="invitacion.html" style="color: white; text-decoration: underline; font-weight: bold;">¡Haz clic aquí para abrir la invitación!</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const envelope = document.getElementById('envelope');
+  envelope.addEventListener('click', () => {
+    envelope.classList.add('open');
+    // Redirigir a la invitación después de la animación
+    setTimeout(() => {
+      window.location.href = "invitacion.html";
+    }, 1200);
+  });
+</script>
+
+</body>
+</html>
