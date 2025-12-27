@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sobre Animado</title>
+
+<!-- Tipografía elegante para nombres -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
 <style>
   body, html {
     margin: 0;
@@ -12,90 +15,136 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F7E7CE; /* Champagne */
+    background-color: #FFF4EF;
     font-family: sans-serif;
   }
 
-  /* Contenedor del sobre */
-  .envelope {
-    width: 250px;
-    height: 150px;
-    position: relative;
-    cursor: pointer;
-    perspective: 1000px; /* Para la animación 3D */
+   /* Plantas decorativas fijas en las esquinas de la pantalla */
+  .plant {
+    position: fixed;
+    width: 100px;
+    opacity: 0.6;
+    z-index: 0; /* detrás del contenido */
   }
+  .plant.tl { top: 0; left: 0; }
+  .plant.tr { top: 0; right: 0; }
+  .plant.bl { bottom: 0; left: 0; }
+  .plant.br { bottom: 0; right: 0; }
 
-  /* Cuerpo del sobre */
-  .envelope-body {
-    width: 100%;
-    height: 100%;
-    background-color: #556B2F; /* Verde olivo */
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    transition: transform 1s;
-  }
 
-  /* Solapa del sobre */
-  .flap {
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    top: 0;
-    left: 0;
-    background-color: #6B8E23; /* Verde más claro */
-    clip-path: polygon(0 0, 50% 100%, 100% 0);
-    transform-origin: top;
-    transition: transform 1s;
-  }
-
-  /* Mensaje dentro del sobre */
-  .message {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    color: white;
+  .container {
+    width: 260px;   /* mismo ancho que el sobre */
+    margin: 0 auto; /* centrar horizontalmente */
     text-align: center;
-    padding: 10px;
-    opacity: 0;
-    transition: opacity 1s;
+    position: relative;
+    z-index: 1;     /* sobre el fondo de plantas */
+  }
+  /* Línea superior: Nuestra Fiesta */
+  .title {
+    font-family: "Cambria";
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: #65715E;
+    margin-bottom: 25px;
+    text-align: left;
   }
 
-  /* Animación al abrir */
-  .envelope.open .flap {
-    transform: rotateX(180deg);
+  /* Nombres alineados al sobre */
+  .names {
+    width: 260px; /* Igual al ancho del sobre */
+    font-family: 'Great Vibes', cursive;
+    color: #4D544A;
+    margin-bottom: 18px;
+    line-height: .75;
   }
-  .envelope.open .message {
-    opacity: 1;
+
+  .name-left {
+    font-size: 4.2rem;
+    text-align: left;
+  }
+
+  .ampersand {
+    font-size: 2.2rem;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  .name-right {
+    font-size: 4.2rem;
+    text-align: right;
+  }
+
+  /* Sobre */
+  .envelope-img {
+    width: 260px;
+    cursor: pointer;
+  }
+
+  /* Texto debajo del sobre */
+  .click-text {
+    font-size: 1.2rem;
+    color: #4A5D23;
+    margin-top: 12px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Flecha punteada */
+  .arrow-img {
+    width: 80px; /* Ajusta el tamaño de la flecha */
+    margin-top: 6px;
+  }
+
+  .date {
+    font-family: "Cambria", serif;
+    font-size: 1.4rem;
+    color: #65715E;
+    margin-bottom: 12px;
   }
 </style>
 </head>
-<body>
 
-<div class="envelope" id="envelope">
-  <div class="envelope-body">
-    <div class="flap"></div>
-    <div class="message">
-      <a href="invitacion.html" style="color: white; text-decoration: underline; font-weight: bold;">¡Haz clic aquí para abrir la invitación!</a>
-    </div>
+<body>
+<!-- Plantas decorativas fijas en las esquinas de la pantalla -->
+<img src="planta1.png" class="plant tl" alt="Planta esquina superior izquierda">
+<img src="planta2.png" class="plant tr" alt="Planta esquina superior derecha">
+<img src="planta3.png" class="plant bl" alt="Planta esquina inferior izquierda">
+<img src="planta4.png" class="plant br" alt="Planta esquina inferior derecha">
+
+<div class="container">
+  <!-- Línea superior -->
+  <div class="title">Nuestra Boda</div>
+
+  <!-- Nombres alineados al sobre -->
+  <div class="names">
+    <div class="name-left">Fátima</div>
+    <div class="ampersand">y</div>
+    <!--<div class="ampersand">&</div>-->
+    <div class="name-right">Jesús</div>
+  </div>
+
+  <div class="date">21 • Marzo • 2026 </div>
+
+  <!-- Sobre -->
+  <img src="sobre-green.png" class="envelope-img" id="envelope" alt="Abrir invitación">
+
+  <!-- Texto debajo del sobre -->
+  <div class="click-text">
+    Clic para abrir la invitación
+    <!-- Flecha punteada -->
+    <img src="flecha-punteada.png" alt="Flecha" class="arrow-img">
   </div>
 </div>
 
 <script>
   const envelope = document.getElementById('envelope');
   envelope.addEventListener('click', () => {
-    envelope.classList.add('open');
-    // Redirigir a la invitación después de la animación
+    envelope.style.transform = "scale(1.1)";
     setTimeout(() => {
       window.location.href = "invitacion.html";
-    }, 1200);
+    }, 500);
   });
 </script>
 
