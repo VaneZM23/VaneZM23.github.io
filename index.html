@@ -1,152 +1,163 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- Tipografía elegante para nombres -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
 
 <style>
   body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100vh;
+    background-color: white; /* Fondo blanco en toda la pantalla */
+    font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FFF4EF;
-    font-family: sans-serif;
   }
-
-   /* Plantas decorativas fijas en las esquinas de la pantalla */
-  .plant {
-    position: fixed;
-    width: 100px;
-    opacity: 0.6;
-    z-index: 0; /* detrás del contenido */
-  }
-  .plant.tl { top: 0; left: 0; }
-  .plant.tr { top: 0; right: 0; }
-  .plant.bl { bottom: 0; left: 0; }
-  .plant.br { bottom: 0; right: 0; }
-
 
   .container {
-    width: 260px;   /* mismo ancho que el sobre */
-    margin: 0 auto; /* centrar horizontalmente */
-    text-align: center;
     position: relative;
-    z-index: 1;     /* sobre el fondo de plantas */
-  }
-  /* Línea superior: Nuestra Fiesta */
-  .title {
-    font-family: "Cambria";
-    font-size: 1.6rem;
-    font-weight: normal;
-    color: #65715E;
-    margin-bottom: 25px;
-    text-align: left;
-  }
-
-  /* Nombres alineados al sobre */
-  .names {
-    width: 260px; /* Igual al ancho del sobre */
-    font-family: 'Great Vibes', cursive;
-    color: #4D544A;
-    margin-bottom: 18px;
-    line-height: .75;
-  }
-
-  .name-left {
-    font-size: 4.2rem;
-    text-align: left;
-  }
-
-  .ampersand {
-    font-size: 2.2rem;
+    width: 320px; /* tamaño aproximado invitación vertical */
+    padding: 20px 20px 40px 20px;
+    background: white; /* Fondo blanco del contenedor */
+    box-sizing: border-box;
     text-align: center;
-    opacity: 0.7;
+    overflow: visible;
   }
 
-  .name-right {
-    font-size: 4.2rem;
+  /* Flores ajustadas en esquinas */
+  .flower {
+    position: absolute;
+    width: 90px;
+    opacity: 0.3;
+    pointer-events: none; /* para que no interfieran con clicks */
+  }
+  .flower.tl { top: 5px; left: 5px; transform: rotate(-10deg); }
+  .flower.tr { top: 5px; right: 5px; transform: rotate(15deg); }
+  .flower.bl { bottom: 5px; left: 5px; transform: rotate(20deg); }
+  .flower.br { bottom: 5px; right: 5px; transform: rotate(-15deg); }
+
+  /* Texto */
+  .date {
+    font-family: "Baskerville Old Face", serif;
+    font-size: 1.4rem;
+    color: #4A5D23;
+    margin-bottom: 8px;
+  }
+  .title {
+    font-family: "Baskerville Old Face", serif;
+    font-size: 1.8rem;
+    font-weight: normal;
+    color: #4A5D23;
+    margin-bottom: 8px;
+  }
+  .names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.6rem;
+    color: #1a1a1a;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .names .ampersand {
+    font-size: 1.8rem;
+    opacity: 0.6;
+  }
+
+  .names .name-left {
+    display: inline-block;
+    text-align: left;
+    width: 40%;
+    vertical-align: middle;
+  }
+  .names .ampersand {
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .names .name-right {
+    display: inline-block;
+    width: 40%;
     text-align: right;
+    vertical-align: middle;
   }
 
   /* Sobre */
   .envelope-img {
-    width: 260px;
+    width: 240px;
     cursor: pointer;
+    margin-bottom: 14px;
   }
 
-  /* Texto debajo del sobre */
+  /* Texto debajo */
   .click-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #4A5D23;
-    margin-top: 12px;
     font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-bottom: 30px;
+  }
+  .arrow {
+    width: 60px;
+    opacity: 0.5;
   }
 
-  /* Flecha punteada */
-  .arrow-img {
-    width: 80px; /* Ajusta el tamaño de la flecha */
-    margin-top: 6px;
-  }
-
-  .date {
-    font-family: "Cambria", serif;
-    font-size: 1.4rem;
-    color: #65715E;
-    margin-bottom: 12px;
+  /* Responsive */
+  @media (max-width: 400px) {
+    .flower {
+      width: 60px;
+    }
+    .envelope-img {
+      width: 180px;
+    }
+    .arrow {
+      width: 40px;
+    }
+    .names {
+      font-size: 2.5rem;
+    }
+    .names .ampersand {
+      font-size: 1.4rem;
+    }
   }
 </style>
 </head>
-
 <body>
-<!-- Plantas decorativas fijas en las esquinas de la pantalla -->
-<img src="planta1.png" class="plant tl" alt="Planta esquina superior izquierda">
-<img src="planta2.png" class="plant tr" alt="Planta esquina superior derecha">
-<img src="planta3.png" class="plant bl" alt="Planta esquina inferior izquierda">
-<img src="planta4.png" class="plant br" alt="Planta esquina inferior derecha">
+  <div class="container">
+    <!-- Flores en esquinas -->
+    <img src="planta1.png" alt="" class="flower tl" />
+    <img src="flor-superior-derecha.png" alt="" class="flower tr" />
+    <img src="pla.png" alt="" class="flower bl" />
+    <img src="planta4.png" alt="" class="flower br" />
 
-<div class="container">
-  <!-- Línea superior -->
-  <div class="title">Nuestra Boda</div>
+    <div class="date">29 . JUNIO . 2025</div>
+    <div class="title">Nuestra Boda</div>
 
-  <!-- Nombres alineados al sobre -->
-  <div class="names">
-    <div class="name-left">Fátima</div>
-    <div class="ampersand">y</div>
-    <!--<div class="ampersand">&</div>-->
-    <div class="name-right">Jesús</div>
+    <div class="names">
+      <div class="name-left">Gabriela</div>
+      <div class="ampersand">&</div>
+      <div class="name-right">Alejandro</div>
+    </div>
+
+    <img src="sobre.png" alt="Invitación" class="envelope-img" id="envelope" />
+
+    <div class="click-text">
+      CLIC PARA ABRIR LA INVITACIÓN<br />
+      <img src="flecha-punteada.png" alt="Flecha" class="arrow" />
+    </div>
   </div>
 
-  <div class="date">21 • Marzo • 2026 </div>
-
-  <!-- Sobre -->
-  <img src="sobre-green.png" class="envelope-img" id="envelope" alt="Abrir invitación">
-
-  <!-- Texto debajo del sobre -->
-  <div class="click-text">
-    Clic para abrir la invitación
-    <!-- Flecha punteada -->
-    <img src="flecha-punteada.png" alt="Flecha" class="arrow-img">
-  </div>
-</div>
-
-<script>
-  const envelope = document.getElementById('envelope');
-  envelope.addEventListener('click', () => {
-    envelope.style.transform = "scale(1.1)";
-    setTimeout(() => {
-      window.location.href = "invitacion.html";
-    }, 500);
-  });
-</script>
-
+  <script>
+    const envelope = document.getElementById('envelope');
+    envelope.addEventListener('click', () => {
+      envelope.style.transform = "scale(1.1)";
+      setTimeout(() => {
+        window.location.href = "invitacion.html";
+      }, 500);
+    });
+  </script>
 </body>
 </html>
