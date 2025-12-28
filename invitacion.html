@@ -10,22 +10,22 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: "Cambria";
-      background-color: #FFF4EF; /* fondo principal */
-      /*color: #4D544A; */ /* color de textos */
-      color: #4D544A;
+      font-family: 'Playfair Display', serif;
+      background-color: #FFF4EF;
+      color: #65715E;
     }
 
     .container {
       position: relative;
-      height: 100vh;
-      background: url('foto1.jpeg') no-repeat center center;
+      min-height: 100vh;
+      background: url('TU_IMAGEN_AQUI.jpg') no-repeat center center;
       background-size: cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      padding: 2rem;
     }
 
     .overlay {
@@ -42,59 +42,58 @@
     .content {
       position: relative;
       z-index: 2;
-      padding: 20px;
-      max-width: 800px;
+      max-width: 900px;
+      width: 100%;
     }
 
     .names {
       font-family: 'Great Vibes', cursive;
-      font-size: 5em;
-      color: #4D544A; /* color principal para nombres */
-      margin-bottom: 30px;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      color: #4D544A;
+      margin-bottom: 1.5rem;
     }
 
     .verse {
-      font-size: 1.4em;
-      margin-bottom: 20px;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      margin-bottom: 1rem;
     }
 
     .reference {
-      font-size: 1em;
-      margin-bottom: 40px;
-      color: #4D544A; /* color de textos */
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      margin-bottom: 2rem;
+      color: #65715E;
     }
 
-    /* Título del contador */
     .countdown-title {
-      font-size: 1.6em;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
       font-weight: bold;
       color: #4D544A;
-      margin-bottom: 10px;
+      margin-bottom: 0.5rem;
     }
 
     .line {
-      width: 120px;
+      width: 40%;
+      max-width: 200px;
       height: 2px;
       background-color: #4D544A;
-      margin: 0 auto 20px auto;
+      margin: 0 auto 1.5rem auto;
     }
 
-    /* Estilo del contador */
     .countdown {
       display: flex;
       justify-content: center;
       gap: 15px;
-      margin-top: 10px;
-      margin-bottom: 15px;
+      flex-wrap: wrap; /* permite que se acomode en móviles */
+      margin-bottom: 1rem;
     }
 
     .countdown-item {
       background: #FFF4EF;
       padding: 15px 20px;
-      font-size: 1.2em;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       font-weight: bold;
       color: #4D544A;
-      min-width: 90px;
+      min-width: 80px;
       text-align: center;
       border: 2px solid #4D544A;
       border-radius: 20px 0px 20px 0px;
@@ -102,17 +101,16 @@
     }
 
     .countdown-label {
-      font-size: 0.8em;
-      color: #4D544A;
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+      color: #65715E;
       margin-top: 5px;
       display: block;
     }
 
     .event-date {
-      font-size: 1.2em;
-      color: #4D544A;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #65715E;
       margin-top: 10px;
-      font-weight: bold;
     }
   </style>
 </head>
@@ -120,14 +118,18 @@
   <div class="container">
     <div class="overlay"></div>
     <div class="content">
-      <div class="names">Fátima y Jesús</div>
+      <div class="names">Gabriela y Alejandro</div>
       <div class="verse">
-        “La vida nos dio el mejor regalo, y queremos compartielo contigo”
+        “El amor es paciente, es bondadoso... Todo lo soporta, todo lo cree, todo lo espera, todo lo soporta.”
       </div>
-      <div class="countdown-title">Contando los días</div> 
-      <div class="line"></div> <!-- Contador --> 
-      <div id="countdown" class="countdown"></div> <!-- Fecha del evento --> 
-      <div class="event-date"><h3>16 / 06 / 2029</h3></div>
+      <div class="reference">1 Corintios 13:4 - 7</div>
+
+      <div class="countdown-title">Contando los días</div>
+      <div class="line"></div>
+
+      <div id="countdown" class="countdown"></div>
+
+      <div class="event-date">16 / 06 / 2029</div>
     </div>
   </div>
 
