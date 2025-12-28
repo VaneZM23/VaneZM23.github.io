@@ -79,37 +79,62 @@
       margin: 0 auto 1.5rem auto;
     }
 
-    /* Contador siempre en línea */
     .countdown {
-      display: flex;
-      justify-content: center;
-      gap: clamp(8px, 2vw, 15px);
-      flex-wrap: nowrap; /* evita que se rompa en móviles */
-      overflow-x: auto;  /* si la pantalla es muy pequeña, permite scroll horizontal */
-      margin-bottom: 1rem;
-    }
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    flex-wrap: nowrap; /* siempre en línea */
+  }
 
+  .countdown-item {
+    background: #FFF4EF;
+    padding: 15px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4D544A;
+    flex: 1; /* cada bloque se ajusta proporcionalmente */
+    text-align: center;
+    border: 2px solid #4D544A;
+    border-radius: 20px 0px 20px 0px;
+    box-shadow: 4px 6px 12px rgba(0,0,0,0.1);
+  }
+
+  .countdown-label {
+    font-size: 0.8em;
+    color: #4D544A;
+    margin-top: 5px;
+    display: block;
+  }
+
+  /* Ajustes para pantallas pequeñas */
+  @media (max-width: 600px) {
+    .countdown {
+      gap: 8px;
+    }
     .countdown-item {
-      background: #FFF4EF;
-      padding: clamp(10px, 2vw, 15px) clamp(12px, 3vw, 20px);
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      font-weight: bold;
-      color: #4D544A;
-      min-width: clamp(70px, 20vw, 90px);
-      text-align: center;
-      border: 2px solid #4D544A;
-      border-radius: 20px 0px 20px 0px;
-      box-shadow: 4px 6px 12px rgba(0,0,0,0.1);
-      flex-shrink: 0; /* evita que se encojan demasiado */
+      padding: 8px;
+      font-size: 0.9em;
+      border-radius: 12px 0px 12px 0px;
     }
-
     .countdown-label {
-      font-size: clamp(0.7rem, 2vw, 0.9rem);
-      color: #4D544A;
-      margin-top: 5px;
-      display: block;
+      font-size: 0.7em;
     }
+  }
 
+  @media (max-width: 400px) {
+    .countdown {
+      gap: 5px;
+    }
+    .countdown-item {
+      padding: 6px;
+      font-size: 0.8em;
+    }
+    .countdown-label {
+      font-size: 0.65em;
+    }
+  }
     .event-date {
       font-size: clamp(1rem, 2.5vw, 1.2rem);
       color: #4D544A;
@@ -163,3 +188,4 @@
   </script>
 </body>
 </html>
+
