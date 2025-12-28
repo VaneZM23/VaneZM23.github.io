@@ -1,125 +1,197 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gabriela y Alejandro</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Tipografías elegantes para el verso y los nombres -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,600&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --overlay-white: rgba(255, 255, 255, 0.95); /* Intensidad del blanco */
+      --overlay-fade: rgba(255, 255, 255, 0.0);
+      --text-color: #2f2f2f;
+      --accent-color: #8c6a50; /* toque cálido elegante */
+      --max-content-width: 1100px;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    * { box-sizing: border-box; }
 
-<style>
-  body {
-    margin: 0;
-    font-family: sans-serif;
-    background: white;
-  }
+    body {
+      margin: 0;
+      color: var(--text-color);
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #ffffff;
+    }
 
-  /* SECCIONES */
-  .section {
-    padding: 80px 20px 0;
-    text-align: center;
-  }
+    /* Sección principal con imagen de fondo y overlay difuminado */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #fff;
+    }
 
-  .section.alt {
-    background-color: #FFF4EF;
-  }
+    /* Imagen de fondo en <img> para compatibilidad y carga adecuada */
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(105%) contrast(102%);
+      z-index: 0;
+    }
 
-  /* Texto */
-  .intro-text {
-    max-width: 500px;
-    margin: 0 auto 40px;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #4A5D23;
-  }
+    /* Gradiente blanco que se mezcla con la foto */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          var(--overlay-white) 0%,
+          rgba(255, 255, 255, 0.85) 20%,
+          rgba(255, 255, 255, 0.55) 40%,
+          rgba(255, 255, 255, 0.25) 60%,
+          var(--overlay-fade) 85%);
+      z-index: 1;
+      pointer-events: none;
+    }
 
-  /* Nombres */
-  .names {
-    font-family: 'Great Vibes', cursive;
-    font-size: 3.6rem;
-    line-height: 1.1;
-    margin-bottom: 60px;
-  }
+    /* Sutil difuminado óptico para juntar blanco + foto */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: -40px -40px -40px -40px; /* expandir para suavizar bordes */
+      backdrop-filter: blur(3px);
+      /* Si backdrop-filter no es soportado, el gradiente anterior sigue funcionando */
+      z-index: 1;
+      pointer-events: none;
+    }
 
-  .name-left { text-align: left; }
-  .ampersand {
-    font-size: 2rem;
-    opacity: 0.6;
-    margin: 10px 0;
-  }
-  .name-right { text-align: right; }
+    /* Contenedor del contenido */
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: var(--max-content-width);
+      padding: clamp(24px, 6vw, 64px);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(16px, 3vw, 32px);
+    }
 
-  /* Imagen borrosa */
-  .blur-image {
-    width: 100%;
-    height: 240px;
-    overflow: hidden;
-  }
+    /* Tarjeta del verso */
+    .card {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      padding: clamp(20px, 4vw, 40px);
+      backdrop-filter: blur(4px);
+    }
 
-  .blur-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(10px);
-    transform: scale(1.1);
-    opacity: 0.7;
-  }
+    .verse {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 3.2vw, 28px);
+      line-height: 1.5;
+      color: #2a2a2a;
+      margin: 0 0 14px 0;
+    }
 
-  /* CONTENIDO SIGUIENTE */
-  .content {
-    padding: 80px 20px;
-    max-width: 600px;
-    margin: auto;
-    font-size: 1.1rem;
-    line-height: 1.6;
-  }
+    .ref {
+      font-size: clamp(14px, 2.4vw, 18px);
+      color: #555;
+      letter-spacing: 0.02em;
+    }
 
-  /* Responsive */
-  @media (max-width: 480px) {
+    /* Nombres destacados en script elegante */
     .names {
-      font-size: 2.6rem;
+      margin-top: clamp(18px, 3vw, 28px);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(28px, 6vw, 56px);
+      color: var(--accent-color);
+      letter-spacing: 0.02em;
+      text-align: center;
     }
-    .blur-image {
-      height: 180px;
+
+    /* Pie con logo/usuario (opcional) */
+    .footer {
+      margin-top: clamp(16px, 2vw, 24px);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.85;
     }
-  }
-</style>
+
+    .footer__tag {
+      font-size: 14px;
+      color: #444;
+    }
+
+    /* Layout ancho: verso a la izquierda, nombres y/o detalles a la derecha */
+    @media (min-width: 900px) {
+      .content {
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+      }
+      .side {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+    }
+
+    /* Botón o detalle adicional (si se desea) */
+    .accent-line {
+      width: 72px;
+      height: 2px;
+      background: var(--accent-color);
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
+  <section class="hero" aria-label="Anuncio romántico">
+    <!-- Reemplaza la ruta de la imagen por la tuya -->
+    <img
+      class="hero__bg"
+      src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1920&auto=format&fit=crop"
+      alt="Pareja caminando entre árboles en un momento romántico"
+      loading="eager"
+      fetchpriority="high"
+    />
 
-<!-- SECCIÓN 1 -->
-<section class="section">
-  <div class="intro-text">
-    Con mucha alegría queremos invitarte a celebrar con nosotros
-    un momento único lleno de amor y emociones.
-  </div>
+    <div class="content">
+      <div class="card">
+        <p class="verse">
+          “El amor es paciente, es bondadoso. El amor no es envidioso ni jactancioso ni orgulloso.
+          No se comporta con rudeza, no busca lo suyo, no se irrita, no lleva cuentas del mal.
+          El amor no se deleita en la maldad, sino que se regocija con la verdad.
+          Todo lo disculpa, todo lo cree, todo lo espera, todo lo soporta.”
+        </p>
+        <p class="ref">1 Corintios 13:4–7</p>
+      </div>
 
-  <div class="names">
-    <div class="name-left">Gabriela</div>
-    <div class="ampersand">&</div>
-    <div class="name-right">Alejandro</div>
-  </div>
+      <div class="side">
+        <div class="names">Gabriela y Alejandro</div>
+        <div class="accent-line" aria-hidden="true"></div>
 
-  <!-- Imagen borrosa como transición -->
-  <div class="blur-image">
-    <img src="foto1.jpeg" alt="">
-  </div>
-</section>
-
-<!-- SECCIÓN 2 -->
-<section class="section alt">
-  <div class="content">
-    <h2>La celebración</h2>
-    <p>
-      Acompáñanos a compartir una noche especial, rodeados de familia,
-      música y momentos que quedarán para siempre.
-    </p>
-  </div>
-
-  <div class="blur-image">
-    <img src="foto2.jpeg" alt="">
-  </div>
-</section>
-
+        <div class="footer">
+          <!-- Opcional: logo/usuario estilo TikTok -->
+          <span class="footer__tag">@estudiocreativo</span>
+        </div>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
-
