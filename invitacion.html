@@ -10,15 +10,15 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Playfair Display', serif;
+      font-family: "Cambria", serif;
       background-color: #FFF4EF;
-      color: #65715E;
+      color: #4D544A;
     }
 
     .container {
       position: relative;
       min-height: 100vh;
-      background: url('TU_IMAGEN_AQUI.jpg') no-repeat center center;
+      background: url('foto1.jpeg') no-repeat center center;
       background-size: cover;
       display: flex;
       flex-direction: column;
@@ -48,20 +48,20 @@
 
     .names {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-size: clamp(2.5rem, 8vw, 5rem);
       color: #4D544A;
       margin-bottom: 1.5rem;
     }
 
     .verse {
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-size: clamp(1rem, 3vw, 1.4rem);
       margin-bottom: 1rem;
     }
 
     .reference {
-      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
       margin-bottom: 2rem;
-      color: #65715E;
+      color: #4D544A;
     }
 
     .countdown-title {
@@ -79,38 +79,42 @@
       margin: 0 auto 1.5rem auto;
     }
 
+    /* Contador siempre en línea */
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap; /* permite que se acomode en móviles */
+      gap: clamp(8px, 2vw, 15px);
+      flex-wrap: nowrap; /* evita que se rompa en móviles */
+      overflow-x: auto;  /* si la pantalla es muy pequeña, permite scroll horizontal */
       margin-bottom: 1rem;
     }
 
     .countdown-item {
       background: #FFF4EF;
-      padding: 15px 20px;
+      padding: clamp(10px, 2vw, 15px) clamp(12px, 3vw, 20px);
       font-size: clamp(1rem, 2.5vw, 1.2rem);
       font-weight: bold;
       color: #4D544A;
-      min-width: 80px;
+      min-width: clamp(70px, 20vw, 90px);
       text-align: center;
       border: 2px solid #4D544A;
       border-radius: 20px 0px 20px 0px;
       box-shadow: 4px 6px 12px rgba(0,0,0,0.1);
+      flex-shrink: 0; /* evita que se encojan demasiado */
     }
 
     .countdown-label {
       font-size: clamp(0.7rem, 2vw, 0.9rem);
-      color: #65715E;
+      color: #4D544A;
       margin-top: 5px;
       display: block;
     }
 
     .event-date {
       font-size: clamp(1rem, 2.5vw, 1.2rem);
-      color: #65715E;
+      color: #4D544A;
       margin-top: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -120,16 +124,12 @@
     <div class="content">
       <div class="names">Gabriela y Alejandro</div>
       <div class="verse">
-        “El amor es paciente, es bondadoso... Todo lo soporta, todo lo cree, todo lo espera, todo lo soporta.”
+        “La vida nos dio el mejor regalo, y queremos compartirlo contigo”
       </div>
-      <div class="reference">1 Corintios 13:4 - 7</div>
-
-      <div class="countdown-title">Contando los días</div>
-      <div class="line"></div>
-
-      <div id="countdown" class="countdown"></div>
-
-      <div class="event-date">16 / 06 / 2029</div>
+      <div class="countdown-title">Contando los días</div> 
+      <div class="line"></div> 
+      <div id="countdown" class="countdown"></div> 
+      <div class="event-date"><h3>16 / 06 / 2029</h3></div>
     </div>
   </div>
 
