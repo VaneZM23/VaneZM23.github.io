@@ -1,197 +1,163 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gabriela y Alejandro</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Tipografías elegantes para el verso y los nombres -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,600&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --overlay-white: rgba(255, 255, 255, 0.95); /* Intensidad del blanco */
-      --overlay-fade: rgba(255, 255, 255, 0.0);
-      --text-color: #2f2f2f;
-      --accent-color: #8c6a50; /* toque cálido elegante */
-      --max-content-width: 1100px;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
+    body, html {
       margin: 0;
-      color: var(--text-color);
-      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: #ffffff;
-    }
-
-    /* Sección principal con imagen de fondo y overlay difuminado */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    /* Imagen de fondo en <img> para compatibilidad y carga adecuada */
-    .hero__bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
+      padding: 0;
       height: 100%;
-      object-fit: cover;
-      object-position: center;
-      filter: saturate(105%) contrast(102%);
-      z-index: 0;
+      font-family: "Cambria";
+      background-color: #FFF4EF; /* fondo principal */
+      /*color: #4D544A; */ /* color de textos */
+      color: #4D544A;
     }
 
-    /* Gradiente blanco que se mezcla con la foto */
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom,
-          var(--overlay-white) 0%,
-          rgba(255, 255, 255, 0.85) 20%,
-          rgba(255, 255, 255, 0.55) 40%,
-          rgba(255, 255, 255, 0.25) 60%,
-          var(--overlay-fade) 85%);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* Sutil difuminado óptico para juntar blanco + foto */
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: -40px -40px -40px -40px; /* expandir para suavizar bordes */
-      backdrop-filter: blur(3px);
-      /* Si backdrop-filter no es soportado, el gradiente anterior sigue funcionando */
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* Contenedor del contenido */
-    .content {
+    .container {
       position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: var(--max-content-width);
-      padding: clamp(24px, 6vw, 64px);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: clamp(16px, 3vw, 32px);
-    }
-
-    /* Tarjeta del verso */
-    .card {
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(0,0,0,0.05);
-      border-radius: 18px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-      padding: clamp(20px, 4vw, 40px);
-      backdrop-filter: blur(4px);
-    }
-
-    .verse {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(18px, 3.2vw, 28px);
-      line-height: 1.5;
-      color: #2a2a2a;
-      margin: 0 0 14px 0;
-    }
-
-    .ref {
-      font-size: clamp(14px, 2.4vw, 18px);
-      color: #555;
-      letter-spacing: 0.02em;
-    }
-
-    /* Nombres destacados en script elegante */
-    .names {
-      margin-top: clamp(18px, 3vw, 28px);
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 600;
-      font-size: clamp(28px, 6vw, 56px);
-      color: var(--accent-color);
-      letter-spacing: 0.02em;
+      height: 100vh;
+      background: url('foto1.jpeg') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
     }
 
-    /* Pie con logo/usuario (opcional) */
-    .footer {
-      margin-top: clamp(16px, 2vw, 24px);
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 8px;
-      opacity: 0.85;
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0.95) 0%,
+        rgba(255,255,255,0.7) 40%,
+        rgba(255,255,255,0.3) 80%,
+        rgba(255,255,255,0) 100%);
+      z-index: 1;
     }
 
-    .footer__tag {
-      font-size: 14px;
-      color: #444;
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      max-width: 800px;
     }
 
-    /* Layout ancho: verso a la izquierda, nombres y/o detalles a la derecha */
-    @media (min-width: 900px) {
-      .content {
-        grid-template-columns: 1.2fr 0.8fr;
-        align-items: center;
-      }
-      .side {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-      }
+    .names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 5em;
+      color: #4D544A; /* color principal para nombres */
+      margin-bottom: 30px;
     }
 
-    /* Botón o detalle adicional (si se desea) */
-    .accent-line {
-      width: 72px;
+    .verse {
+      font-size: 1.4em;
+      margin-bottom: 20px;
+    }
+
+    .reference {
+      font-size: 1em;
+      margin-bottom: 40px;
+      color: #4D544A; /* color de textos */
+    }
+
+    /* Título del contador */
+    .countdown-title {
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #4D544A;
+      margin-bottom: 10px;
+    }
+
+    .line {
+      width: 120px;
       height: 2px;
-      background: var(--accent-color);
-      opacity: 0.7;
+      background-color: #4D544A;
+      margin: 0 auto 20px auto;
+    }
+
+    /* Estilo del contador */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    .countdown-item {
+      background: #FFF4EF;
+      padding: 15px 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #4D544A;
+      min-width: 90px;
+      text-align: center;
+      border: 2px solid #4D544A;
+      border-radius: 20px 0px 20px 0px;
+      box-shadow: 4px 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .countdown-label {
+      font-size: 0.8em;
+      color: #4D544A;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .event-date {
+      font-size: 1.2em;
+      color: #4D544A;
+      margin-top: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <section class="hero" aria-label="Anuncio romántico">
-    <!-- Reemplaza la ruta de la imagen por la tuya -->
-    <img
-      class="hero__bg"
-      src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1920&auto=format&fit=crop"
-      alt="Pareja caminando entre árboles en un momento romántico"
-      loading="eager"
-      fetchpriority="high"
-    />
-
+  <div class="container">
+    <div class="overlay"></div>
     <div class="content">
-      <div class="card">
-        <p class="verse">
-          “El amor es paciente, es bondadoso. El amor no es envidioso ni jactancioso ni orgulloso.
-          No se comporta con rudeza, no busca lo suyo, no se irrita, no lleva cuentas del mal.
-          El amor no se deleita en la maldad, sino que se regocija con la verdad.
-          Todo lo disculpa, todo lo cree, todo lo espera, todo lo soporta.”
-        </p>
-        <p class="ref">1 Corintios 13:4–7</p>
+      <div class="names">Fátima y Jesús</div>
+      <div class="verse">
+        “La vida nos dio el mejor regalo, y queremos compartielo contigo”
       </div>
-
-      <div class="side">
-        <div class="names">Gabriela y Alejandro</div>
-        <div class="accent-line" aria-hidden="true"></div>
-
-        <div class="footer">
-          <!-- Opcional: logo/usuario estilo TikTok -->
-          <span class="footer__tag">@estudiocreativo</span>
-        </div>
-      </div>
+      <div class="countdown-title">Contando los días</div> 
+      <div class="line"></div> <!-- Contador --> 
+      <div id="countdown" class="countdown"></div> <!-- Fecha del evento --> 
+      <div class="event-date"><h3>16 / 06 / 2029</h3></div>
     </div>
-  </section>
+  </div>
+
+  <script>
+    const targetDate = new Date("June 16, 2029 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "¡El gran día ha llegado!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = `
+        <div class="countdown-item">${days}<span class="countdown-label">Días</span></div>
+        <div class="countdown-item">${hours}<span class="countdown-label">Horas</span></div>
+        <div class="countdown-item">${minutes}<span class="countdown-label">Min</span></div>
+        <div class="countdown-item">${seconds}<span class="countdown-label">Seg</span></div>
+      `;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>
