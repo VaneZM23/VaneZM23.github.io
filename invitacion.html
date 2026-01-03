@@ -239,68 +239,12 @@
 /* Sección de itinerario */
 /* Sección de itinerario */
 .itinerary-section {
-  position: relative;
-  background-color: #FFF4EF; /* fondo suave */
-  padding: 60px 20px;
-  text-align: center;
-  overflow: hidden;
-}
-
-/* Overlay difuminado en la parte superior */
-.itinerary-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 150px; /* altura del fade */
-  background: linear-gradient(to bottom, #FFF 0%, rgba(255,255,255,0) 100%);
-  z-index: 1;
-}
-
-/* Contenido */
-.itinerary-content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-  margin: 0 auto;
-  background: #FFF;
-  border-radius: 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  padding: 30px;
-}
-
-/* Título */
-.itinerary-title {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  color: #4D544A;
-  margin-bottom: 20px;
-}
-
-/* Lista */
-.itinerary-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: #65715E;
-}
-
-.itinerary-list li {
-  margin: 12px 0;
-  padding: 10px;
-  border-bottom: 1px solid rgba(77,84,74,0.2);
-}
-
-.itinerary-list li strong {
-  color: #4D544A;
-}
-
-    /* Sección itinerario */
-.itinerary-section {
   background-color: #FFF4EF;
-  padding: 80px 20px;
+  padding: 80px 90px;
   position: relative;
   overflow: hidden;
+  text-align: center;
+  justify-items: center;
 }
 
 /* Fade superior */
@@ -313,6 +257,15 @@
   background: linear-gradient(to bottom, #FFF 0%, rgba(255,255,255,0) 100%);
   z-index: 1;
 }
+
+.itinerary-overlay-bottom { 
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  height: 150px; 
+  background: linear-gradient(to top, #FFF 0%, rgba(255,255,255,0) 100%); 
+  z-index: 3; }
 
 .itinerary-title {
   text-align: center;
@@ -361,6 +314,7 @@
   color: #65715E;
   max-width: 200px;
   position: relative;
+  text-align: center;
 }
 
 /* Corazón marcador sobre la línea */
@@ -376,6 +330,10 @@
   border-radius: 50%;
   padding: 6px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.timeline-icon {
+  font-size: 1.8rem;
 }
 
 /* Posición del corazón */
@@ -397,7 +355,7 @@
 }
 
 .top-left {
-  top: 5px;
+  top: 8px;
   left: 1px;
 }
 
@@ -412,11 +370,15 @@
 }
 
 .bottom-right {
-  bottom: 1px;
+  bottom: 8px;
   right: 1px;
 }
 
-
+.dresscode-photo {
+  padding: -58px 90px;
+  height: 150px;
+  
+}
   </style>
 </head>
 <body>
@@ -566,6 +528,7 @@
   </script>
 </body>
 </html>
+
 
 
 
